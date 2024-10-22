@@ -1,7 +1,8 @@
 # 3d-Imager-with-C-
 This is a Vide project (-> http://vide.malban.de/)
 
-The files were original an "answer" to a forum text. I will repeat some of the forum comments here:
+The files were original an "answer" to a forum text. (https://vectorgaming.proboards.com/thread/2735/idea-3d-drawing-program)
+I will repeat some of the forum comments here:
 
 # 1 ######################
 
