@@ -18,17 +18,17 @@ Well - the structure of your program differs...
 
 The main() function now just looks like this:
 
-
+```
 int main(void)
 {
     imagerCInit();
     return 0;
 }
-
+```
 
 The imager is initialized and calls back 6 functions that you must provide:
 
-
+```
 void drawRightColor1()
 void drawRightColor2()
 void drawRightColor3()
@@ -36,9 +36,9 @@ void drawRightColor3()
 void drawLeftColor1()
 void drawLeftColor2()
 void drawLeftColor3()
-
+```
 As an example in the project these are implemented as:
-
+```
 void drawRightColor1()
 {
     VIA_t1_cnt_lo = 0x7f;
@@ -86,7 +86,7 @@ void drawLeftColor3()
     Print_Str_d_3d(0xb0,0x50, "LEFT\x80")
     return;
 }
-
+```
 You MUST NOT use Bios functions that change the CIA_CNTL register.
 Mostly that means - you are not allowed to use functions that influence the Zeroing or Unzeroing.
 
@@ -95,17 +95,17 @@ A couple of "helper" functions are provided - see the include file.
 The "3dimager.s" is one assembler file, which provides all functions needed.
 
 The only things you might want to change might be the "values" of the disk. These are kept in constant definitions:
-
+```
 T2_VALUE            =        0xe000    ; value for the wheel update frequency -> 1/(1/1500000 * 0xe000) = 26,1579241 Hz 
 BLUE_ANGLE          =        60        ; values for the angles "Crazy Coaster" / "narrow Escape" 
 GREEN_ANGLE         =        64        ; I use the angles to calculate in relation to the above timer value 
 RED_ANGLE           =        56        ; the compare values, when the actual eye/color combination is drawn in the 
-				       ; timeframe of one main round 
+				       ; timeframe of one main round
+```
 Following values for the actual timing "might be" calculated correctly (hahaha).
 
 The output looks like:
-http://vectrex.malban.de/tmp/Imager_C.png
-vectrex.malban.de/tmp/Imager_C.png
+![Imager_C.png]([http://url/to/img.png](http://vectrex.malban.de/tmp/Imager_C.png))
 
 Notes:
 
@@ -153,13 +153,13 @@ You can also switch the output mode of the imager to "BW" or to "anaglyphic"
 Another reminder - something I saw in your code.
 With the right Eye - the pulse may still be on and must be switch off'able.
 Therefor after ever "lengthy" operation you should once call
-
+```
 checkPWMOutput();
-
+```
 The output should be more stable.
 
 -> your right eye should look something like:
-
+```
   for (i = 0; i < next_free_line; i++) {
     x0 = line[i].x0;    x1 = line[i].x1;
     y0 = line[i].y0;    y1 = line[i].y1;
@@ -177,7 +177,7 @@ The output should be more stable.
     Draw_Line_d(dy, dx);
     checkPWMOutput();
   }
-
+```
 
 
 I added a "debug" feature in my code - each time your "display round" takes longer then allowed - a variable "missCounter" is increased.
@@ -223,7 +223,7 @@ So - use this as a the main function:
 
 (NOTE: Do not use local variables in the main function!!!)
 
-
+```
 int main(void)
 {
 startAgain:
@@ -256,14 +256,14 @@ startAgain:
     // otherwise a cold reset will be performed
     return 0;
 }
-
+```
 Then in your right eye function - or anywhere else:
-
+```
 if (button_1_4_pressed()) 
 {
     __asm  (" jmp _mainLabel\n");
 }
-
+```
 With this you can then "jump" back to the main function.
 
 The example jumps back and forth from imager to non - imager display using buttons 1 and 4.
