@@ -14,10 +14,9 @@ To use it in your own project you have to copy the two files:
    3dImager.s
 
 To your project - include the "*.h" file... and Go.
-Well - the structure of you program differs...
+Well - the structure of your program differs...
 
 The main() function now just looks like this:
-
 
 
 int main(void)
@@ -38,11 +37,7 @@ void drawLeftColor1()
 void drawLeftColor2()
 void drawLeftColor3()
 
-
-
 As an example in the project these are implemented as:
-
-
 
 void drawRightColor1()
 {
