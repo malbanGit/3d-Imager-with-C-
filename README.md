@@ -105,7 +105,7 @@ RED_ANGLE           =        56        ; the compare values, when the actual eye
 Following values for the actual timing "might be" calculated correctly (hahaha).
 
 The output looks like:
-![Imager_C.png]([http://url/to/img.png](http://vectrex.malban.de/tmp/Imager_C.png))
+![Imager_C.png](http://vectrex.malban.de/tmp/Imager_C.png)
 
 Notes:
 
